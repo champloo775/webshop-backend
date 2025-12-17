@@ -2,6 +2,7 @@ package com.example.webshop.service;
 
 import com.example.webshop.exception.InsufficientStockException;
 import com.example.webshop.exception.InvalidOrderException;
+import com.example.webshop.exception.OrderNotFoundException;
 import com.example.webshop.exception.ProductNotFoundException;
 import com.example.webshop.model.*;
 import com.example.webshop.repository.OrderRepository;
@@ -99,6 +100,6 @@ public class OrderService {
 
     public Order getOrderById(Long id) {
         return orderRepository.findById(id)
-                .orElseThrow(() -> new InvalidOrderException("Order not found with id: " + id));
+                .orElseThrow(() -> new OrderNotFoundException(id));
     }
 }

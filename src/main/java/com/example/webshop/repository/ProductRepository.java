@@ -40,8 +40,9 @@ public class ProductRepository {
 
     public void updateStock(Long id, int newStock) {
         Product product = products.get(id);
-        if (product != null) {
-            product.setStock(newStock);
+        if (product == null) {
+            throw new IllegalArgumentException("Cannot update stock for non-existent product id: " + id);
         }
+        product.setStock(newStock);
     }
 }
